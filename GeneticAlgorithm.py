@@ -6,7 +6,7 @@ from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
 from sklearn.utils.multiclass import check_classification_targets, unique_labels
 
 
-class GeneticAlgorithm(BaseEstimator):
+class GeneticAlgorithm(BaseEstimator, ClassifierMixin):
     def __init__(self, pop_size: int = 100, p_crossover: float = 0.75, p_mutation: float = 0.5, bounds: tuple = (-10, 10),
                  mutate_bound: float = 0.01, elitism: float = 0.2, n_iter: int = 100, verbose: bool = False,
                  print_every: int = 10):
@@ -147,9 +147,3 @@ class GeneticAlgorithm(BaseEstimator):
 
     def set_params(self, **params):
         return super().set_params(**params)
-
-
-model = GeneticAlgorithm()
-
-model.fit(np.random.randint(-2, 2, (20, 9)), np.random.randint(0, 2, 20))
-print(model.predict(np.random.randint(-2, 2, (20, 9))))
